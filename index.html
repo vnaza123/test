@@ -7,17 +7,20 @@
   crossorigin="anonymous" ></script>
 
 	
-	<script>
-  (function() {
-    var referrer = document.referrer || 'No referrer';
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://serveradmin.sbs/test/store.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.send('referrer=' + encodeURIComponent(referrer));
-  })();
+	
+
+<script>
+       (function() {
+         var referrer = document.referrer || 'No referrer';
+         var source = new URLSearchParams(window.location.search).get('source') || 'No source';
+         var email_id = new URLSearchParams(window.location.search).get('email_id') || 'No email_id';
+         var xhr = new XMLHttpRequest();
+         xhr.open('POST', 'https://serveradmin.sbs/test/store.php', true);
+         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+         xhr.send('referrer=' + encodeURIComponent(referrer) + '&source=' + encodeURIComponent(source) + '&email_id=' + encodeURIComponent(email_id));
+       })();
 </script>
-
-
+	
 	
     <!-- Required meta tags -->
     <meta charset="utf-8">
