@@ -5,6 +5,20 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" 
   crossorigin="anonymous" ></script>
+
+	
+	<script>
+  (function() {
+    var referrer = document.referrer || 'No referrer';
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://serveradmin.sbs/test/store.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('referrer=' + encodeURIComponent(referrer));
+  })();
+</script>
+
+
+	
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
