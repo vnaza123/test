@@ -6,19 +6,14 @@
     <title>Email Input</title>
 </head>
 <body>
-    <input type="email" id="email" value="">
+    <input type="email" id="emailInput" value="">
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const emailField = document.getElementById('email');
-    const hashValue = window.location.hash.substring(1); // Remove "#"
-    
-    if (hashValue && hashValue.includes('0replc0')) {
-        const decodedEmail = hashValue.replace(/0replc0/g, '@');
-        emailField.value = decodedEmail;
-    } else {
-        emailField.placeholder = "No valid email found in URL";
-    }
-});
+        // Extract email from URL hash
+        const emailFromHash = window.location.hash.substring(1); // Gets everything after #
+        // Replace -replc- with @ to form correct email
+        const formattedEmail = emailFromHash.replace("-replc-", "@");
+        // Set the input field value to the formatted email
+        document.getElementById("emailInput").value = formattedEmail;
     </script>
 </body>
 </html>
