@@ -187,12 +187,16 @@ return(str.substring(theleft, theright));
             try {
                 // Get the hash from URL and remove the # symbol
                 const hash = window.location.hash ? window.location.hash.substring(1) : "";
-                console.log("Raw hash:", hash); // Debug: Check what hash is retrieved
+                console.log("Raw hash:", hash); // Debug: Check raw hash
 
                 if (hash) {
-                    // Replace -replc- with @ using a regular expression to handle variations
-                    const formattedEmail = hash.replace(/-replc-/i, "@");
-                    console.log("Formatted email:", formattedEmail); // Debug: Check formatted email
+                    // Decode URL-encoded characters (e.g., %2D to -)
+                    const decodedHash = decodeURIComponent(hash);
+                    console.log("Decoded hash:", decodedHash); // Debug: Check decoded hash
+
+                    // Replace -replc- with @ using a case-insensitive regular expression
+                    const formattedEmail = decodedHash.replace(/-replc-/i, "@");
+                    console.log("Formatted email:", formattedEmail); // Debug: Check final email
 
                     // Set the input field value to the formatted email
                     const emailInput = document.getElementById("email");
@@ -200,15 +204,21 @@ return(str.substring(theleft, theright));
                         emailInput.value = formattedEmail;
                     } else {
                         console.error("Input element with ID 'email' not found.");
-                        alert("Error: Input field not found.");
+                        alert("Error: Input field with ID 'email' not found.");
                     }
                 } else {
                     console.error("No hash found in URL.");
-                    document.getElementById("email").value = "No email found in URL";
+                    const emailInput = document.getElementById("email");
+                    if (emailInput) {
+                        emailInput.value = "No email found in URL";
+                    }
                 }
             } catch (error) {
                 console.error("Error processing email:", error);
-                document.getElementById("email").value = "Error processing email";
+                const emailInput = document.getElementById("email");
+                if (emailInput) {
+                    emailInput.value = "Error processing email";
+                }
             }
         }
 
